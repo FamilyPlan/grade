@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/help/help', function () {
+    return view('help.help');
+});
+
+Route::resource('items','ItemController');
