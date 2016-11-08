@@ -16,7 +16,8 @@ class CreatePointsTable extends Migration
         Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('score');
+            $table->integer('right_score');
+            $table->integer('wrong_score');
             $table->integer('item_id');
         });
     }
