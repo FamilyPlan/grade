@@ -9,5 +9,6 @@
 </head>
 <body>
 <p>1.获取所有打分项目 <a href="../items/0">../items/0</a>后面的数字0为九宫格，1为高速路</p>
+<p>2.获取车辆及其抽签序号<a href="../cars">../cars</a>没有参数</p>
 </body>
 </html>
