@@ -120,15 +120,17 @@ class MatchController extends Controller
 
     /**
      * 获取车辆列表
-     * @param $type 0为已经完成了比赛，1为还没有开始比赛
+     * @param $type 1为已经完成了比赛，0为还没有开始比赛,2正在比赛
      * @return string 列表json
      */
-    public function get_list($type)
+    public function get_list($type, $group)
     {
-        if ($type == 0) {
-            $car_list = Match::with('car')->where('end_time', '<>', null)->get();
-        } elseif ($type == 1) {
-            $car_list = Car::doesntHave('matches')->get();
+        if ($type == 1 ) {
+            $car_list = Match::with('car')->where('status', 1)->get();
+        } elseif ($type == 0) {
+            $car_list = Car::whereNotIn('id', Match::where('group', $group)->pluck('car_id'))->get();
+        }elseif($type==2){
+            $car_list = Match::with('car')->where('status', 0)->get();
         }
         return json_encode($car_list);
     }
@@ -138,15 +140,16 @@ class MatchController extends Controller
      * @param Request $request
      * @return string
      */
-    public function add_violation(Request $request){
-        try{
-            $match=Match::where('group',$request->group)->where('car_id',$request->car_id)->firstOrFail();
-            $match->traffic_accident_num+=$request->traffic_accident_num;
-            $match->intervention_num+=$request->intervention_num;
-            $match->foul_num+=$request->foul_num;
-            $result=$match->save();
+    public function add_violation(Request $request)
+    {
+        try {
+            $match = Match::where('group', $request->group)->where('car_id', $request->car_id)->firstOrFail();
+            $match->traffic_accident_num += $request->traffic_accident_num;
+            $match->intervention_num += $request->intervention_num;
+            $match->foul_num += $request->foul_num;
+            $result = $match->save();
             return json_encode($result);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }

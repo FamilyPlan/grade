@@ -36,8 +36,9 @@
 <p>
     6.获取车辆列表<br>
     get<br>
-    <a href="../mactches/get_list/0">../mactches/get_list/0</a>获取所有已经完成比赛的车辆<br>
-    <a href="../mactches/get_list/1">../mactches/get_list/1</a>获取所有未开始比赛的车辆<br>
+    <a href="../mactches/get_list/0/group/0">../mactches/get_list/{type}/group/{group}</a><br>
+    {type}:0,获取所有未比赛车辆；1，获取已完成比赛车辆；2，获取正在比赛车辆<br>
+    {group}:比赛类型，0九宫格，1高速公路
 </p>
 <p>
     7.添加违规项<br>

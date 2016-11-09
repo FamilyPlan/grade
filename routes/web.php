@@ -32,7 +32,7 @@ Route::get('/web/score',function (){
     return view('web.score');
 });
 
-Route::get('/matches/get_list/{type}','MatchController@get_list');
+Route::get('/matches/get_list/{type}/group/{group}','MatchController@get_list');
 Route::post('/matches/add_violation','MatchController@add_violation');
 
 Route::resource('items','ItemController');
