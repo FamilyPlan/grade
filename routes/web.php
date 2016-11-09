@@ -25,6 +25,12 @@ Route::get('/help/postexample', function () {
 Route::get('/web/index',function (){
     return view('web.index');
 });
+Route::get('/web/score1',function (){
+    return view('web.score1');
+});
+Route::get('/web/score',function (){
+    return view('web.score');
+});
 
 Route::get('/matches/get_list/{type}','MatchController@get_list');
 
