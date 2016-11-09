@@ -22,7 +22,7 @@ Route::get('/help/postexample', function () {
     return view('help.postexample');
 });
 
-Route::get('/web/',function (){
+Route::get('/web/index',function (){
     return view('web.index');
 });
 
