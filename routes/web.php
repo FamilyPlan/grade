@@ -18,6 +18,13 @@ Route::get('/', function () {
 Route::get('/help/help', function () {
     return view('help.help');
 });
+Route::get('/help/postexample', function () {
+    return view('help.postexample');
+});
+
+Route::get('/web/',function (){
+    return view('web.index');
+});
 
 Route::resource('items','ItemController');
 Route::resource('cars','CarController');
