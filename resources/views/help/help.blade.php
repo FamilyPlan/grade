@@ -32,5 +32,11 @@
     参数{match_id:获取到的比赛id,car_id:车辆id,point_id:评分条目id是下面小项的id,score:小项的得分}<br>
     返回的是成功与否，点击提交按钮后遍历下面的小项，然后一条一条的提交
 </p>
+<p>
+    6.获取车辆列表<br>
+    get<br>
+    <a href="../mactches/get_list/0">../mactches/get_list/0</a>获取所有已经完成比赛的车辆<br>
+    <a href="../mactches/get_list/1">../mactches/get_list/1</a>获取所有已经未开始比赛的车辆<br>
+</p>
 </body>
 </html>

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Match extends Model
+class Car extends Model
 {
     public $timestamps = false;
 
-    public function car(){
-        return $this->belongsTo('App\Car');
+    public function matches(){
+        return $this->hasMany('App\Match');
     }
 }
