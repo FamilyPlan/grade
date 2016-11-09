@@ -1,8 +1,9 @@
 
 $(function(){
+	var carMatchInfo=[];
 	// 获取车辆的列表以及抽签号
 	$.ajax({
-		url:'../cars',
+		url:'../car',
 		type:'GET',
 		success:function(res){
 			var data=JSON.parse(res),htm='';
@@ -54,7 +55,6 @@ $(function(){
 	})
 	
 	// 设置一个比赛ID
-	var match_id;
 	// 车辆点击开始按钮
 	$("#J_BtnStart").on("click",function(){
 		// 将车辆信息传给数据库，并且记下比赛开始时间
@@ -66,7 +66,9 @@ $(function(){
 			},
 			success:function(res){
 				alert("开始比赛");
-				match_id=parseInt(res);
+				var carId=$("#J_SlecNum option:selected").val();
+				var match_id=parseInt(res);
+				carMatchInfo[carId]=match_id;
 			}
 		})
 	})	
@@ -92,13 +94,14 @@ $(function(){
 	
 	// 监听违规信息
 	$("#J_OtherBtn").on("click",function(){
-		var u='../matches/'+match_id;
+		var carId=$("#J_SlecNum option:selected").val();
+		var u='../matches/'+carMatchInfo[carId];
 		$.ajax({
 			url:u,
 			type:'PUT',
 			data:{
 				flag:1,
-				car_id:$("#J_SlecNum option:selected").val(),
+				car_id:carId,
 				traffic_accident_num:$('#J_AccidentNum').val(),
 				intervention_num:$('#J_IntervNum').val(),
 				foul_num:$("#J_IllNum").val()
@@ -114,8 +117,9 @@ $(function(){
 
 	// 结束比赛
 	$("#J_BtnEnd").on("click",function(){
+		var carId=$("#J_SlecNum option:selected").val();
 		// 将车辆信息传给数据库，并且记下比赛开始时间
-		var u='../matches/'+match_id;
+		var u='../matches/'+carMatchInfo[carId];
 		$.ajax({
 			url:u,
 			type:'PUT',
