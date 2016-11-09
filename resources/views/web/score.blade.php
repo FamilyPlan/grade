@@ -20,7 +20,7 @@
 			width: 100%;
 			height: 82px;
 			line-height: 82px;
-			background-image: url('./img/logo.png');
+			background-image: url('../img/logo.png');
 			background-repeat:no-repeat; 
 			background-size: 260px 70px;
 			background-position: 12px 8px;
@@ -29,6 +29,13 @@
 			font-size: 40px;
 			font-weight: bolder;
 			text-align: center;
+		}
+		.header>img{
+			position: absolute;
+			width: 79px;
+			height: 58px;
+			right: 17px;
+			top: 16px;
 		}
 		.logo{
 			text-align: center;
@@ -58,18 +65,18 @@
 		.second{
 			height: 270px;
 			margin-top: 30px;
-			background-image: url('./img/second.png');
+			background-image: url('../img/second.png');
 		}
 		.first{
 			height: 300px;
 			border-left: 2px solid #e2e2e2;
 			border-right: 2px solid #e2e2e2;
-			background-image: url('./img/first.png');
+			background-image: url('../img/first.png');
 		}
 		.third{
 			height: 240px;
 			margin-top: 60px;
-			background-image: url('./img/third.png');
+			background-image: url('../img/third.png');
 		}
 		.item-cont{
 			position: absolute;
@@ -138,11 +145,12 @@
 	<div class="yanhua"></div>
 	<div class="wrapper">
 		<div class="header">
-			2016中国智能车未来挑战赛
+			<label>2016中国智能车未来挑战赛</label>
+			<img src="../img/logo1.png" alt="">	
 		</div>
 		<div class="top-three">
 			<div class="logo">
-				<img src="./img/jbn.png" alt="">
+				<img src="../img/jbn.png" alt="">
 			</div>
 			<div class="score-list">
 				<div class="second item"></div>
