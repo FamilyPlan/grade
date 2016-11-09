@@ -14,8 +14,9 @@
     3.开始比赛<br>
     post<br>
     ../matches<br>
-    car_id:车辆id<br>
-    返回的是创建的比赛的id，需要保存下来以后会用到，<a href="postexample">postexample</a>中是一个例子
+    car_id:车辆id；group:比赛类型，0为九宫格，1为高速公路<br>
+    true/false<br>
+    <a href="postexample">postexample</a>中是一个例子
 </p>
 <p>
     4.结束比赛<br>

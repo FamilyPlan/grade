@@ -18,10 +18,12 @@ class CreateMatchesTable extends Migration
             $table->integer('car_id');
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->integer('traffic_accident_num')->nullable();
-            $table->integer('intervention_num')->nullable();
-            $table->integer('foul_num')->nullable();
+            $table->integer('traffic_accident_num')->default(0);
+            $table->integer('intervention_num')->default(0);
+            $table->integer('foul_num')->default(0);
             $table->integer('score')->nullable();
+            $table->integer('status');
+            $table->integer('group');
         });
     }
 

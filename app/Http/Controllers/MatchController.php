@@ -41,8 +41,10 @@ class MatchController extends Controller
         $match = new Match;
         $match->car_id = $request->car_id;
         $match->start_time = date('Y-m-d H:i:s');
-        $match->save();
-        return json_encode($match->id);
+        $match->group=$request->group;
+        $match->status=0;
+        $result=$match->save();
+        return json_encode($result);
     }
 
     /**
