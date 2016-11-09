@@ -9,7 +9,7 @@
 </head>
 <body>
 <p>1.获取所有打分项目 <a href="../items/0">../items/0</a>后面的数字0为九宫格，1为高速路</p>
-<p>2.获取车辆及其抽签序号<a href="../cars">../cars</a>没有参数</p>
+<p>2.获取车辆及其抽签序号<a href="../car">../car</a>没有参数</p>
 <p>
     3.开始比赛<br>
     post<br>
@@ -36,7 +36,7 @@
     6.获取车辆列表<br>
     get<br>
     <a href="../mactches/get_list/0">../mactches/get_list/0</a>获取所有已经完成比赛的车辆<br>
-    <a href="../mactches/get_list/1">../mactches/get_list/1</a>获取所有已经未开始比赛的车辆<br>
+    <a href="../mactches/get_list/1">../mactches/get_list/1</a>获取所有未开始比赛的车辆<br>
 </p>
 </body>
 </html>

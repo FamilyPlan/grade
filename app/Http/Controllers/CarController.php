@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cars;
+use App\Car;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars=Cars::orderBy('order','asc')->get();
+        $cars=Car::orderBy('order','asc')->get();
         return json_encode($cars);
     }
 

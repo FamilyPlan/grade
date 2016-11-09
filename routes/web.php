@@ -29,7 +29,7 @@ Route::get('/web/index',function (){
 Route::get('/matches/get_list/{type}','MatchController@get_list');
 
 Route::resource('items','ItemController');
-Route::resource('cars','CarController');
+Route::resource('car','CarController');
 Route::resource('matches','MatchController');
 Route::resource('scores','ScoreController');
 
