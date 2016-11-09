@@ -30,7 +30,7 @@
     5.打分<br>
     post<br>
     ../scores<br>
-    参数{match_id:获取到的比赛id,car_id:车辆id,point_id:评分条目id是下面小项的id,score:小项的得分}<br>
+    参数{group:比赛类型，同上；car_id:车辆id,point_id:评分条目id是下面小项的id,score:小项的得分}<br>
     返回的是成功与否，点击提交按钮后遍历下面的小项，然后一条一条的提交
 </p>
 <p>
