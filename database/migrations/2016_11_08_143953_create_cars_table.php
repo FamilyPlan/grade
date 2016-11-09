@@ -17,6 +17,7 @@ class CreateCarsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('order');
+            $table->string('college_name');
         });
     }
 
