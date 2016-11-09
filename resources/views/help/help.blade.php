@@ -47,5 +47,11 @@
     car_id:车辆id;group:比赛类型，0为九宫格，1为高速公路;traffic_accident_num:交通事故次数；intervention_num:人工干预测试;foul_num:违规次数<br>
     true/false
 </p>
+<p>
+    8.获取已完成比赛的车辆及得分<br>
+    get<br>
+    <a href="../matches/show/0">../matches/show/{group}</a><br>
+    {group}:比赛类型，同上
+</p>
 </body>
 </html>

@@ -55,7 +55,8 @@ class MatchController extends Controller
      */
     public function show($id)
     {
-        //
+        $matchlist=Match::with('car')->where('group',$id)->where('status',1)->get();
+        return json_encode($matchlist);
     }
 
     /**
