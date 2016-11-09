@@ -13,7 +13,7 @@
 <p>
     3.开始比赛<br>
     post<br>
-    ../matches</a><br>
+    ../matches<br>
     car_id:车辆id<br>
     返回的是创建的比赛的id，需要保存下来以后会用到，<a href="postexample">postexample</a>中是一个例子
 </p>
@@ -24,6 +24,13 @@
     结束比赛: {flag:0}<br>
     添加违规项：{flag:1,traffic_accident_num:数字,intervention_num:数字,foul_num:数字}<br>
     返回的是成功与否，true或false,<a href="postexample">postexample</a>中是一个例子
+</p>
+<p>
+    5.打分<br>
+    post<br>
+    ../scores<br>
+    参数{match_id:获取到的比赛id,car_id:车辆id,point_id:评分条目id是下面小项的id,score:小项的得分}<br>
+    返回的是成功与否，点击提交按钮后遍历下面的小项，然后一条一条的提交
 </p>
 </body>
 </html>
