@@ -1,6 +1,6 @@
 
 $(function(){
-	var carMatchInfo=[];
+	var groupType;
 	// 获取车辆的列表以及抽签号
 	$.ajax({
 		url:'../car',
@@ -21,7 +21,7 @@ $(function(){
 			url:'../items/1',
 			type:'GET',
 			success:function(res){
-				var data=JSON.parse(res),htm='';
+				var data=JSON.parse(res),htm='',groupType=1;
 				for(var i in data){
 					var item=data[i],points=item.points,listhtm='';
 					for(var j in points){
@@ -40,7 +40,7 @@ $(function(){
 			url:'../items/0',
 			type:'GET',
 			success:function(res){
-				var data=JSON.parse(res),htm='';
+				var data=JSON.parse(res),htm='',groupType=0;
 				for(var i in data){
 					var item=data[i],points=item.points,listhtm='';
 					for(var j in points){
@@ -63,6 +63,7 @@ $(function(){
 			type:'POST',
 			data:{
 				car_id:$("#J_SlecNum option:selected").val(),
+				group:groupType
 			},
 			success:function(res){
 				alert("开始比赛");
@@ -95,13 +96,12 @@ $(function(){
 	// 监听违规信息
 	$("#J_OtherBtn").on("click",function(){
 		var carId=$("#J_SlecNum option:selected").val();
-		var u='../matches/'+carMatchInfo[carId];
 		$.ajax({
-			url:u,
+			url:'../matcher/add_violation',
 			type:'PUT',
 			data:{
-				flag:1,
 				car_id:carId,
+				group:groupType,
 				traffic_accident_num:$('#J_AccidentNum').val(),
 				intervention_num:$('#J_IntervNum').val(),
 				foul_num:$("#J_IllNum").val()
@@ -119,13 +119,14 @@ $(function(){
 	$("#J_BtnEnd").on("click",function(){
 		var carId=$("#J_SlecNum option:selected").val();
 		// 将车辆信息传给数据库，并且记下比赛开始时间
-		var u='../matches/'+carMatchInfo[carId];
+		var u='../matches/'+carId;
 		$.ajax({
 			url:u,
 			type:'PUT',
 			data:{
-				flag:0,
-				car_id:$("#J_SlecNum option:selected").val()
+				flag:1,
+				car_id:$("#J_SlecNum option:selected").val(),
+				group:groupType
 			},
 			success:function(res){
 				alert("结束比赛");
@@ -136,12 +137,14 @@ $(function(){
 
 	// 中途退出比赛
 	$("#J_BtnQuit").on("click",function(){
+		var carId=$("#J_SlecNum option:selected").val(),u='../matches/'+carId;;
 		$.ajax({
-			url:'',
-			type:'GET',
+			url:u,
+			type:'PUT',
 			data:{
 				carNum:$("#J_SlecNum option:selected").val(),
-				flag:2
+				flag:2,
+				group:groupType
 			},
 			success:function(res){
 				alert("退出比赛");
