@@ -26,6 +26,8 @@ Route::get('/web/index',function (){
     return view('web.index');
 });
 
+Route::get('/matches/get_list/{type}','MatchController@get_list');
+
 Route::resource('items','ItemController');
 Route::resource('cars','CarController');
 Route::resource('matches','MatchController');

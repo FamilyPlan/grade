@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Car;
 use App\Match;
+use App\Score;
 use Illuminate\Http\Request;
 use League\Flysystem\Exception;
 
@@ -78,6 +80,12 @@ class MatchController extends Controller
             $match = Match::findOrFail($id);
             if($request->flag==0){
                 $match->end_time=date('Y-m-d H:i:s');
+                $scores=Score::where('match_id',$id)->get();
+                $sum=0;
+                foreach ($scores as $score) {
+                    $sum+=$score->score;
+                }
+                $match->score=$sum;
             }else{
                 $match->traffic_accident_num=$request->traffic_accident_num;
                 $match->intervention_num=$request->intervention_num;
@@ -101,5 +109,19 @@ class MatchController extends Controller
     function destroy($id)
     {
         //
+    }
+
+    /**
+     * 获取车辆列表
+     * @param $type 0为已经完成了比赛，1为还没有开始比赛
+     * @return string 列表json
+     */
+    public function get_list($type){
+        if($type==0){
+            $car_list=Match::with('car')->where('end_time','<>',null)->get();
+        }elseif ($type==1){
+            $car_list=Car::doesntHave('matches')->get();
+        }
+        return json_encode($car_list);
     }
 }
