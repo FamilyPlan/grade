@@ -28,4 +28,5 @@ Route::get('/web/',function (){
 
 Route::resource('items','ItemController');
 Route::resource('cars','CarController');
+Route::resource('matches','MatchController');
 
