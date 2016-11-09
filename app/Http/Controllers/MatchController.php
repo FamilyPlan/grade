@@ -132,4 +132,22 @@ class MatchController extends Controller
         }
         return json_encode($car_list);
     }
+
+    /**
+     * 添加违规项
+     * @param Request $request
+     * @return string
+     */
+    public function add_violation(Request $request){
+        try{
+            $match=Match::where('group',$request->group)->where('car_id',$request->car_id)->firstOrFail();
+            $match->traffic_accident_num+=$request->traffic_accident_num;
+            $match->intervention_num+=$request->intervention_num;
+            $match->foul_num+=$request->foul_num;
+            $result=$match->save();
+            return json_encode($result);
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
 }

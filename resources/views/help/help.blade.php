@@ -39,5 +39,12 @@
     <a href="../mactches/get_list/0">../mactches/get_list/0</a>获取所有已经完成比赛的车辆<br>
     <a href="../mactches/get_list/1">../mactches/get_list/1</a>获取所有未开始比赛的车辆<br>
 </p>
+<p>
+    7.添加违规项<br>
+    post<br>
+    ../matcher/add_violation<br>
+    car_id:车辆id;group:比赛类型，0为九宫格，1为高速公路;traffic_accident_num:交通事故次数；intervention_num:人工干预测试;foul_num:违规次数<br>
+    true/false
+</p>
 </body>
 </html>

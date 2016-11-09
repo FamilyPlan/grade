@@ -33,6 +33,7 @@ Route::get('/web/score',function (){
 });
 
 Route::get('/matches/get_list/{type}','MatchController@get_list');
+Route::post('/matches/add_violation','MatchController@add_violation');
 
 Route::resource('items','ItemController');
 Route::resource('car','CarController');
