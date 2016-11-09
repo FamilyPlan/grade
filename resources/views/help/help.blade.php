@@ -13,9 +13,17 @@
 <p>
     3.开始比赛<br>
     post<br>
-    <a href="../Matches">../Matches</a><br>
+    ../matches</a><br>
     car_id:车辆id<br>
     返回的是创建的比赛的id，需要保存下来以后会用到，<a href="postexample">postexample</a>中是一个例子
+</p>
+<p>
+    4.结束比赛<br>
+    put<br>
+    ../matches/1,后面的1为收到的比赛的id<br>
+    结束比赛: {flag:0}<br>
+    添加违规项：{flag:1,traffic_accident_num:数字,intervention_num:数字,foul_num:数字}<br>
+    返回的是成功与否，true或false,<a href="postexample">postexample</a>中是一个例子
 </p>
 </body>
 </html>

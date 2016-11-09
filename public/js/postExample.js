@@ -12,3 +12,16 @@ function postExample() {
         alert(data);
     },"json");
 }
+
+function putExample() {
+    var match_id=$("#match_id").val();
+    $.ajax({
+        url:'../matches/'+match_id,
+        type:"PUT",
+        data:{flag:0},
+        success:function (data) {
+            alert(data);
+        },
+        dataType:'json'
+    });
+}

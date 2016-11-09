@@ -10,7 +10,9 @@
 </head>
 <body>
 车辆号<input id="car_id" type="text"><br>
-<button onclick=postExample()>提交</button>
+<button onclick=postExample()>postExample</button><br>
+match_id<input type="text" id="match_id"><br>
+<button onclick="putExample()">putExample</button>
 <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <script src={{asset("/js/postExample.js")}}></script>
 </body>

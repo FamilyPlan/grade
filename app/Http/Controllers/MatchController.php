@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Match;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class MatchController extends Controller
 {
@@ -30,14 +31,14 @@ class MatchController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $match=new Match;
-        $match->car_id=$request->car_id;
-        $match->start_time=date('Y-m-d H:i:s');
+        $match = new Match;
+        $match->car_id = $request->car_id;
+        $match->start_time = date('Y-m-d H:i:s');
         $match->save();
         return json_encode($match->id);
     }
@@ -45,7 +46,7 @@ class MatchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +57,7 @@ class MatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,22 +68,37 @@ class MatchController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $match = Match::findOrFail($id);
+            if($request->flag==0){
+                $match->end_time=date('Y-m-d H:i:s');
+            }else{
+                $match->traffic_accident_num=$request->traffic_accident_num;
+                $match->intervention_num=$request->intervention_num;
+                $match->foul_num=$request->foul_num;
+            }
+            $result=$match->save();
+            return json_encode($result);
+        } catch (Exception $e)
+        {
+            return json_encode($e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }
