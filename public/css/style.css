@@ -59,7 +59,7 @@ background:#f2f2f2;
 	border-radius: 5px;
 }
 .selec-wrap{
-	background: url('./img/arrow.png') right center no-repeat; 
+	background: url('../img/arrow.png') right center no-repeat; 
   width: 100px;
   height: 36px;
   overflow: hidden;
@@ -204,13 +204,13 @@ fieldset[disabled] a.btn {
 }
 .check+label{
 	padding: 12px 0px 10px 30px;
-	background-image: url("./img/radiodft.png");
+	background-image: url("../img/radiodft.png");
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: 1px 9px;
 }
 .check:checked+label{
-	background-image: url("./img/radioact.png");
+	background-image: url("../img/radioact.png");
 }
 .list-cont{
 	background:#e2e2e2;
