@@ -41,9 +41,9 @@ class MatchController extends Controller
         $match = new Match;
         $match->car_id = $request->car_id;
         $match->start_time = date('Y-m-d H:i:s');
-        $match->group=$request->group;
-        $match->status=0;
-        $result=$match->save();
+        $match->group = $request->group;
+        $match->status = 0;
+        $result = $match->save();
         return json_encode($result);
     }
 
@@ -74,31 +74,36 @@ class MatchController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|string
      */
     public function update(Request $request, $id)
     {
         try {
-            $match = Match::findOrFail($id);
-            if($request->flag==0){
-                $match->end_time=date('Y-m-d H:i:s');
-                $scores=Score::where('match_id',$id)->get();
-                $sum=0;
-                foreach ($scores as $score) {
-                    $sum+=$score->score;
-                }
-                $match->score=$sum;
-            }else{
-                $match->traffic_accident_num=$request->traffic_accident_num;
-                $match->intervention_num=$request->intervention_num;
-                $match->foul_num=$request->foul_num;
+            $match = Match::where('group', $request->group)->where('car_id', $id)->firstOrFail();
+            $match->status = $request->flag;
+            $match->end_time = date('Y-m-d H:i:s');
+            $scores = Score::where('match_id', $match->id)->get();
+            $sum = 0;
+            foreach ($scores as $score) {
+                $sum += $score->score;
             }
-            $result=$match->save();
-            return json_encode($result);
-        } catch (Exception $e)
-        {
-            return json_encode($e->getMessage());
+            $match->score = $sum;
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
+//        try {
+//
+//            }else{
+//                $match->traffic_accident_num=$request->traffic_accident_num;
+//                $match->intervention_num=$request->intervention_num;
+//                $match->foul_num=$request->foul_num;
+//            }
+//            $result=$match->save();
+//            return json_encode($result);
+//        } catch (Exception $e)
+//        {
+//            return json_encode($e->getMessage());
+//        }
     }
 
     /**
@@ -118,11 +123,12 @@ class MatchController extends Controller
      * @param $type 0为已经完成了比赛，1为还没有开始比赛
      * @return string 列表json
      */
-    public function get_list($type){
-        if($type==0){
-            $car_list=Match::with('car')->where('end_time','<>',null)->get();
-        }elseif ($type==1){
-            $car_list=Car::doesntHave('matches')->get();
+    public function get_list($type)
+    {
+        if ($type == 0) {
+            $car_list = Match::with('car')->where('end_time', '<>', null)->get();
+        } elseif ($type == 1) {
+            $car_list = Car::doesntHave('matches')->get();
         }
         return json_encode($car_list);
     }

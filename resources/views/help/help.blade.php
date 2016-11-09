@@ -19,11 +19,11 @@
     <a href="postexample">postexample</a>中是一个例子
 </p>
 <p>
-    4.结束比赛<br>
+    4.结束比赛/中途退赛<br>
     put<br>
-    ../matches/1,后面的1为收到的比赛的id<br>
-    结束比赛: {flag:0}<br>
-    添加违规项：{flag:1,traffic_accident_num:数字,intervention_num:数字,foul_num:数字}<br>
+    ../matches/1,后面的1车辆id<br>
+    结束比赛: {flag:1，group:比赛类型，0为九宫格，1为高速公路}<br>
+    中途退赛：{flag:2，group:同上}<br>
     返回的是成功与否，true或false,<a href="postexample">postexample</a>中是一个例子
 </p>
 <p>
