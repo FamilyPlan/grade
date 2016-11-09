@@ -14,14 +14,10 @@
 			<div class="deal">
 				<div class="deal-kind" for="">抽签序号</div>
 				<div class="selec-wrap">
-				  <select id="J_SlecNum">
-				      <option selected  value=1>1</option>
-				      <option  value=2>2</option>
-				      <option value=3>3</option>
-				  </select>
+				  <select id="J_SlecNum"></select>
 				</div>
 			</div>
-			<div class="deal">
+			<!-- <div class="deal">
 				<div class="deal-kind" for="">车队名称</div>
 				<div class="selec-wrap selec-large">
 				  <select id="J_SlecCar">
@@ -30,7 +26,7 @@
 				      <option value="西安交通大学">西安交通大学</option>
 				  </select>
 				</div>
-			</div>
+			</div> -->
 			<div class="deal">
 				<a id="J_GaoSu" href="javascript:void(0);" class="a-btn btn-start">高速测试</a>
 			</div>
@@ -50,36 +46,6 @@
 		<section class="section checkpoint">
 			<h2>比赛赛段考核信息</h2>
 			<section class="section" id="J_CheckPoint">
-				<!-- <div id="J_CheckBox1" class="check-box">
-					<div href="javascript:void(0)" class="list-title">
-						<label>执行U-TURN得分情况（4分）</label>
-						<a href="javascript:void(0);" data-id="1" class="a-btn btn-score btn-submitUnit">提交成绩</a>
-					</div>
-					<div class="list-cont">
-						<div class="list-item">
-							<p class="item-title">是否完成（2分）</p>
-							<p class="item-radio item-radio-y">
-								<input type="radio" value=2 name="id1" class="check" id="id11">
-								<label for="id11">是</label>
-							</p>
-							<p class="item-radio">
-								<input type="radio" value=0 name="id1" class="check" id="id12">
-								<label for="id12">否</label>
-							</p>
-						</div>
-						<div class="list-item">
-							<p class="item-title">是否违章（2分）</p>
-							<p class="item-radio item-radio-y">
-								<input type="radio" value=2 name="id2" class="check" id="id21">
-								<label for="id21">是</label>
-							</p>
-							<p class="item-radio">
-								<input type="radio" value=0 name="id2" class="check" id="id22">
-								<label for="id22">否</label>
-							</p>
-						</div>
-					</div>
-				</div> -->
 			</section>
 		</section>
 		<section class="section interv">

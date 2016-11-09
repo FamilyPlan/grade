@@ -1,5 +1,18 @@
 
 $(function(){
+	// 获取车辆的列表以及抽签号
+	$.ajax({
+		url:'../cars',
+		type:'GET',
+		success:function(res){
+			var data=JSON.parse(res),htm='';
+			for(var i in data){
+				var item=data[i];
+				htm+='<option  value="'+item.id+'">'+item.order+'</option>';
+			}
+			$("#J_SlecNum").html(htm);
+		}
+	})
 	// 获取所有任务点内容
 	$("#J_GaoSu").on("click",function(){
 		alert("获取高速路段测试信息");
@@ -39,27 +52,21 @@ $(function(){
 			}
 		})
 	})
-	// 获取车辆的列表以及抽签号
-	$.ajax({
-		url:'../cars',
-		type:'GET',
-		success:function(){
-			
-		}
-	})
-
+	
+	// 设置一个比赛ID
+	var match_id;
 	// 车辆点击开始按钮
 	$("#J_BtnStart").on("click",function(){
 		// 将车辆信息传给数据库，并且记下比赛开始时间
 		$.ajax({
-			url:'',
-			type:'GET',
+			url:'../matches',
+			type:'POST',
 			data:{
-				carNum:$("#J_SlecNum option:selected").val(),
-				flag:0
+				car_id:$("#J_SlecNum option:selected").val(),
 			},
 			success:function(res){
 				alert("开始比赛");
+				match_id=parseInt(res);
 			}
 		})
 	})	
@@ -70,12 +77,12 @@ $(function(){
 			score+=parseInt($(this).val());
 		});
 		$.ajax({
-			url:'',
-			type:'GET',
+			url:'../scores',
+			type:'POST',
 			data:{
-			carNum:$("#J_SlecNum option:selected").val(),
-				checkId:checkPointId,
-				checkScore:score
+				car_id:$("#J_SlecNum option:selected").val(),
+				point_id:checkPointId,
+				score:score
 			},
 			success:function(){
 				alert("提交成功！");
@@ -85,13 +92,16 @@ $(function(){
 	
 	// 监听违规信息
 	$("#J_OtherBtn").on("click",function(){
+		var u='../matches/'+match_id;
 		$.ajax({
-			url:'',
-			type:'GET',
+			url:u,
+			type:'PUT',
 			data:{
-				accident:$('#J_AccidentNum').val(),
-				interv:$('#J_IntervNum').val(),
-				illegal:$("#J_IllNum").val()
+				flag:1,
+				car_id:$("#J_SlecNum option:selected").val(),
+				traffic_accident_num:$('#J_AccidentNum').val(),
+				intervention_num:$('#J_IntervNum').val(),
+				foul_num:$("#J_IllNum").val()
 			},
 			success:function(){
 				alert('提交成功');
@@ -105,12 +115,13 @@ $(function(){
 	// 结束比赛
 	$("#J_BtnEnd").on("click",function(){
 		// 将车辆信息传给数据库，并且记下比赛开始时间
+		var u='../matches/'+match_id;
 		$.ajax({
-			url:'',
-			type:'GET',
+			url:u,
+			type:'PUT',
 			data:{
-				carNum:$("#J_SlecNum option:selected").val(),
-				flag:1
+				flag:0,
+				car_id:$("#J_SlecNum option:selected").val()
 			},
 			success:function(res){
 				alert("结束比赛");
